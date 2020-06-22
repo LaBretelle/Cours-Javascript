@@ -1,0 +1,47 @@
+<html>
+  <head>
+     <meta charset="UTF-8" />
+     <title>Usage de leaflet</title>
+     <link rel="stylesheet" href="assets/css/bootstrap.css">
+     <link rel="stylesheet" href="assets/css/leaflet.css">
+     <script type="text/javascript" src="assets/js/jquery.js"></script>
+     <script type="text/javascript" src="assets/js/leaflet.js"></script>
+     <script type="text/javascript">
+        $(document).ready(function() {
+            // Création de la carte à l'id "map"
+            var map = L.map('map');
+
+            // Centrer la vue sur 51.505;-0.09 avec un zoom de 10
+            map.setView([51.505, -0.09], 10);
+
+            // Usage des tuiles de carte d'OpenStreetMap puis ajout à la carte map
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            var myLayer = L.geoJSON().addTo(map);
+
+            $.ajax("/json/places.json").done(function(data, x, z) {
+                // On réserve des variables qui permettront de calculer le centre de la carte à la fin
+                geojson_array = [];
+
+                // On boucle sur les clefs
+                for(var place_id in data.places) {
+                    if (data.places[place_id.features]) {
+                    geojson_array.push(data.places[place_id].features[0]);
+                    }
+                }
+                    myLayer.addData(geojson_array);
+            });
+        });
+     </script>
+ </head>
+ <body>
+    <div class="container">
+        <h1>Une carte</h1>
+        <div id="map" style="height: 400px;">
+            <!-- Faire attention à ne pas oublier la hauteur ! -->
+            
+        </div>
+    </div>
+</body>
+</html>

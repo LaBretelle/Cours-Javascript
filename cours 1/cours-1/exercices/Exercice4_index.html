@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head><title>Mon exercice</title>
+<script type="text/javascript" src="data.js"></script>
+<script type="text/javascript">
+// ici on met le javascript
+var trouverlemot = function (mot, un_texte){
+    var resultats = []; // ici on crée une liste vide
+    for (var clef in un_texte["text"]){
+        var passage = un_texte["text"][clef]
+        // search, indexOf et includes sont 3 méthodes différentes de la même classe str.
+        /* OPTION 1 */
+        if (passage.search(mot) !== -1){
+            resultats.push(passage); // ici on ajoute le passage dans une liste
+            console.log(passage + "contient le mot " + mot)
+        }
+        
+       /* OPTION 2
+       if (passage.indexOf(mot) !== -1){
+            console.log(passage + "contient le mot" + mot)
+        }
+        */ 
+       /* OPTION 3
+       if (passage.includes(mot) === true)
+            console.log(passage + "contient le mot" + mot)
+        */
+    }
+    return resultats
+};
+alert(trouverlemot("Autronius", text).join(", "))
+
+</script>
+</head>
+</html>

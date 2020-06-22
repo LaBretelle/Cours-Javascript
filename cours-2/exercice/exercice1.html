@@ -1,0 +1,38 @@
+<html>
+ <body>
+   <article id="article_1">
+     <header class="sub-info">Titre</header>
+     <section>Lorem Ipsum</section>
+     <footer class="sub-info">Auteur</footer>
+   </article>
+   <article id="article_2">
+     <header class="sub-info">Titre 2</header>
+     <section>Lorem Ipsum 2</section>
+     <footer class="sub-info">Auteur 2</footer>
+   </article>
+   <script type="text/javascript">
+   // Votre code ici
+   'use strict';
+   document.getElementById("article_1").style.fontWeight = 'bold';
+   // Question 1  
+   // .querySelector renvoie le 1er élément rencontré
+   // Ex: document.querySelectorAll("#article_2 header")[0].innerText = 'Un Joli Titre'
+   // .querySelectorAll renvoie une liste obligatoirement. Dans ce cas, Le [0] permet de sélectionner un élément dans une liste où on sait qu'il n'y a qu'une seule entrée
+   document.querySelector("#article_2 header").innerText = 'Un Joli Titre';
+
+   // Question 2
+   document.getElementById("article_2").style.margin = "150px";
+
+   // Question 3
+   document.querySelector("body").innerHTML = "<article id='article_3'>ARTICLE 3</article>"
+
+   // Alternative Question 3
+   for (var doc in document.getElementsByTagName("article")){
+     if (doc.getElementById === "article_1"){
+       doc.innerHTML = "<article id='article_3'>ARTICLE 3</article>"
+     }
+
+   }
+   </script>
+ </body>
+</html>
